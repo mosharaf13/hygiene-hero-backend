@@ -20,7 +20,7 @@ class PlayerStatController extends Controller
     {
         // Validate the request data as needed
         $request->validate([
-            'heartbeat' => 'required|integer',
+            'heartbeat' => 'required|string',
             'player_id' => 'required|string',
         ]);
 
