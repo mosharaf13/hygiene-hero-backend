@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/heartbeats', [App\Http\Controllers\PlayerStatController::class, 'index'])->name('heartbeats.index');
-Route::get('/heartbeats/submit', [App\Http\Controllers\PlayerStatController::class, 'store'])->name('heartbeats.submit');
-Route::post('/heartbeats', [App\Http\Controllers\PlayerStatController::class, 'store'])->name('heartbeats.store');
-Route::put('/heartbeats', [App\Http\Controllers\PlayerStatController::class, 'update'])->name('heartbeats.update');
+Route::get('/player-stats', [App\Http\Controllers\PlayerStatController::class, 'index'])->name('player-stats.index');
+Route::get('/player-stats/submit', [App\Http\Controllers\PlayerStatController::class, 'store'])->name('player-stats.submit');
+Route::post('/player-stats', [App\Http\Controllers\PlayerStatController::class, 'store'])->name('player-stats.store');
+Route::put('/player-stats', [App\Http\Controllers\PlayerStatController::class, 'update'])->name('player-stats.update');
