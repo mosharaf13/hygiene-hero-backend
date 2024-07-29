@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PlayerStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class PlayerStatController extends Controller
 {
@@ -24,12 +24,13 @@ class PlayerStatController extends Controller
             'player_id' => 'required|string',
         ]);
 
-
         PlayerStat::create([
             'heartbeat' => $request->input('heartbeat'),
-            'level_id' => $request->input('level_id', null),
+            'level_id' => $request->input('level_id', 0),
             'player_id' => $request->input('player_id'),
-            'play_session_count' => $request->input('play_session_count', null),
+            'version_id' => $request->input('version_id', 0),
+            'score' => $request->input('score', 0),
+            'play_session_count' => $request->input('play_session_count', 0),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
