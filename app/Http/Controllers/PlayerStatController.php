@@ -16,6 +16,11 @@ class PlayerStatController extends Controller
         return PlayerStat::all();
     }
 
+    public function latest()
+    {
+        return PlayerStat::latest()->first();
+    }
+
     public function store(Request $request)
     {
         // Validate the request data as needed
