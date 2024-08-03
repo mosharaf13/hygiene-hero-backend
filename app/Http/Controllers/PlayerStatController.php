@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlayerStat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class PlayerStatController extends Controller
 {
@@ -19,6 +20,17 @@ class PlayerStatController extends Controller
     public function latest()
     {
         return PlayerStat::latest()->first();
+    }
+
+    public function threshold($playerId)
+    {
+        $threshold = PlayerStat::where('player_id', $playerId)
+            ->orderBy('created_at', 'asc')
+            ->limit(3)
+            ->get()
+            ->avg('heartbeat');
+
+        return response()->json(['threshold' => $threshold]);
     }
 
     public function store(Request $request)
@@ -66,6 +78,22 @@ class PlayerStatController extends Controller
         // Optionally, you can return a response to indicate success
         return response()->json(['message' => 'Heartbeat record updated successfully'], 201);
     }
+
+    public function getNextPlayerId()
+    {
+        $playerId = Cache::get('player_id');
+        if (!$playerId) {
+            $highestPlayerId = PlayerStat::max('player_id') ?? 0;
+            $playerId = $highestPlayerId + 1;
+            Cache::put('player_id', $playerId, 60);
+        } else {
+            $playerId++;
+            Cache::put('player_id', $playerId, 60);
+        }
+
+        return response()->json(['player_id' => $playerId]);
+    }
+
 
 
 }
