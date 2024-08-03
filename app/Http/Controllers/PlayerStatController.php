@@ -30,7 +30,7 @@ class PlayerStatController extends Controller
             ->get()
             ->avg('heartbeat');
 
-        return response()->json(['threshold' => $threshold]);
+        return $threshold;
     }
 
     public function store(Request $request)
@@ -91,7 +91,7 @@ class PlayerStatController extends Controller
             Cache::put('player_id', $playerId, 60);
         }
 
-        return response()->json(['player_id' => $playerId]);
+        return $playerId;
     }
 
 
