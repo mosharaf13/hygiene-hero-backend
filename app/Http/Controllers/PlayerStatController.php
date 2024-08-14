@@ -19,7 +19,7 @@ class PlayerStatController extends Controller
 
     public function latest($playerId)
     {
-        return PlayerStat::where('playerId', $playerId)->latest()->first();
+        return PlayerStat::where('player_id', $playerId)->latest()->first();
     }
 
     public function threshold($playerId)
