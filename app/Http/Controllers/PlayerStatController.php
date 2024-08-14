@@ -17,9 +17,9 @@ class PlayerStatController extends Controller
         return PlayerStat::all();
     }
 
-    public function latest()
+    public function latest($playerId)
     {
-        return PlayerStat::latest()->first();
+        return PlayerStat::where('playerId', $playerId)->latest()->first();
     }
 
     public function threshold($playerId)
@@ -30,7 +30,7 @@ class PlayerStatController extends Controller
             ->get()
             ->avg('heartbeat');
 
-        return $threshold;
+        return $threshold + 5;
     }
 
     public function store(Request $request)

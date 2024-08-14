@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/player-stats', [PlayerStatController::class, 'index'])->name('player-stats.index');
 Route::get('/heartbeat-threshold/{playerId}', [PlayerStatController::class, 'threshold']);
-Route::get('/player-stats/latest', [PlayerStatController::class, 'latest'])->name('player-stats.latest');
+Route::get('/player-stats/latest/{playerId}', [PlayerStatController::class, 'latest'])->name('player-stats.latest');
 Route::get('/player-stats/submit', [PlayerStatController::class, 'store'])->name('player-stats.submit');
 Route::post('/player-stats', [PlayerStatController::class, 'store'])->name('player-stats.store');
 Route::put('/player-stats', [PlayerStatController::class, 'update'])->name('player-stats.update');
